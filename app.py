@@ -20,9 +20,9 @@ if uploaded_files:
         data = f.getvalue()
 
         paras = docx_bytes_to_paras(data)
-
+        payload = {"paras": [{"id": i, "text": t} for i, t in enumerate(paras)]}
         # Store as a JSON *string* so each CSV cell contains valid JSON
-        rows.append(json.dumps({"paras": paras}, ensure_ascii=False))
+        rows.append(json.dumps(payload, ensure_ascii=False))
 
     df = pd.DataFrame({"json": rows})
 
