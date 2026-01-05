@@ -1,0 +1,17 @@
+__pycache__/
+*.pyc
+.env
+.venv/
+venv/
+
+# Streamlit
+.streamlit/
+
+# Documents + outputs (avoid committing)
+*.docx
+*.pdf
+*.csv
+*.json
+*.jsonl
+outputs/
+output/
