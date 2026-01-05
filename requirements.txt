@@ -1,5 +1,4 @@
-cat > requirements.txt << 'EOF'
+
 streamlit
 python-docx
 pandas
-EOF

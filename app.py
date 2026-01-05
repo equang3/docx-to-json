@@ -2,7 +2,7 @@ import json
 import pandas as pd
 import streamlit as st
 
-from extractor import docx_bytes_to_value_text
+from extractor import docx_bytes_to_paras
 
 st.set_page_config(page_title="DOCX → JSON", layout="wide")
 st.title("DOCX → JSON converter")
@@ -18,10 +18,11 @@ rows = []
 if uploaded_files:
     for f in uploaded_files:
         data = f.getvalue()
-        value_text = docx_bytes_to_value_text(data)
 
-        # IMPORTANT: store as a JSON *string* so the CSV cell is valid JSON
-        rows.append(json.dumps({"value": value_text}, ensure_ascii=False))
+        paras = docx_bytes_to_paras(data)
+
+        # Store as a JSON *string* so each CSV cell contains valid JSON
+        rows.append(json.dumps({"paras": paras}, ensure_ascii=False))
 
     df = pd.DataFrame({"json": rows})
 
